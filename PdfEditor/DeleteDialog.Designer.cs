@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.buttonDel = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,15 @@
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(164, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "What to do ?";
+            // 
             // buttonDel
             // 
             this.buttonDel.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -56,6 +65,7 @@
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(91, 23);
             this.buttonDel.TabIndex = 5;
+            this.buttonDel.TabStop = false;
             this.buttonDel.Text = "Delete file";
             this.buttonDel.UseVisualStyleBackColor = true;
             // 
@@ -66,6 +76,7 @@
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(91, 23);
             this.buttonDown.TabIndex = 5;
+            this.buttonDown.TabStop = false;
             this.buttonDown.Text = "Move down";
             this.buttonDown.UseVisualStyleBackColor = true;
             // 
@@ -76,6 +87,7 @@
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(91, 23);
             this.buttonUp.TabIndex = 5;
+            this.buttonUp.TabStop = false;
             this.buttonUp.Text = "Move up";
             this.buttonUp.UseVisualStyleBackColor = true;
             // 
@@ -86,17 +98,9 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(91, 23);
             this.buttonCancel.TabIndex = 5;
+            this.buttonCancel.TabStop = false;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(164, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "What to do ?";
             // 
             // DeleteDialog
             // 

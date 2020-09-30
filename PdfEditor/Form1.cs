@@ -24,16 +24,18 @@ namespace PdfEditor
         {
             List<string> ssss = ss;
             int index = ss.IndexOf(sss);
-            for (int i = 0; i < ss.Count; i++)
+            if (index > 0)
             {
-                if (i == index - 1)
+                for (int i = 0; i < ss.Count; i++)
                 {
-                    string d = ss[i];
-                    ssss[i] = sss;
-                    ssss[i + 1] = d;
+                    if (i == index - 1)
+                    {
+                        string d = ss[i];
+                        ssss[i] = sss;
+                        ssss[i + 1] = d;
+                    }
                 }
             }
-
             return ssss;
         }
 
@@ -41,16 +43,18 @@ namespace PdfEditor
         {
             List<string> ssss = ss;
             int index = ss.IndexOf(sss);
-            for (int i = 0; i < ss.Count; i++)
+            if (index < ss.Count)
             {
-                if (i == index + 1)
+                for (int i = 0; i < ss.Count; i++)
                 {
-                    string d = ss[i];
-                    ssss[i] = sss;
-                    ssss[i - 1] = d;
+                    if (i == index + 1)
+                    {
+                        string d = ss[i];
+                        ssss[i] = sss;
+                        ssss[i - 1] = d;
+                    }
                 }
             }
-
             return ssss;
         }
 
@@ -81,23 +85,73 @@ namespace PdfEditor
         {
             DeleteDialog dialog = new DeleteDialog();
             DialogResult result = dialog.ShowDialog();
-            string s = names[listBox1.SelectedIndex];
-            if (result == DialogResult.OK) //Delete
+            try
             {
-                Delete(names, s);
+                string s = names[listBox1.SelectedIndex];
+                string ss = paths[listBox1.SelectedIndex];
+                if (result == DialogResult.OK) //Delete
+                {
+                    Delete(names, s);
+                    Delete(paths, ss);
+                }
+                else if (result == DialogResult.Yes) //Move up
+                {
+                    names = MoveUp(names, s);
+                    paths = MoveUp(paths, ss);
+                }
+                if (result == DialogResult.No) //Move down
+                {
+                    names = MoveDown(names, s);
+                    paths = MoveDown(paths, ss);
+                }
+                listBox1.Items.Clear();
+                for (int i = 0; i < names.Count; i++)
+                {
+                    listBox1.Items.Add(names[i]);
+                }
             }
-            else if (result == DialogResult.Yes) //Move up
+            catch(Exception ex)
             {
-                names = MoveUp(names, s);
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (result == DialogResult.No) //Move down
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "pdf files(*.pdf)|*.pdf";
+            dialog.InitialDirectory = ".";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                names = MoveDown(names, s);
+                textBox1.Text = dialog.FileName;
             }
-            listBox1.Items.Clear();
-            for (int i = 0; i < names.Count(); i++)
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            outputFilepath = textBox1.Text;
+            if (outputFilepath.Trim() != "")
             {
-                listBox1.Items.Add(names[i]);
+                string r = "";
+                foreach(string s in paths)
+                {
+                    r += s+":";
+                }
+                r=r.Remove(r.Length-1);
+                //System.Diagnostics.Process process = new System.Diagnostics.Process();
+                //System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                //startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                //startInfo.FileName = "cmd.exe";
+                //startInfo.Arguments = "/C merge "+r+" "+outputFilepath;
+                //process.StartInfo = startInfo;
+                //process.Start();
+                //process.WaitForExit();
+            }
+            else
+            {
+                MessageBox.Show("Please fill the output file name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
