@@ -11,8 +11,8 @@ namespace PdfEditor
 {
     public partial class Dialog : Form
     {
-        string path;
-        string name;
+        public string path;
+        public string name;
         int mov;
         int movX;
         int movY;
