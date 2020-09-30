@@ -67,8 +67,8 @@ namespace PdfEditor
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                paths.Add(dialog.path);
-                names.Add(dialog.name);
+                paths.AddRange(dialog.path);
+                names.AddRange(dialog.name);
                 listBox1.Items.Clear();
                 for(int i=0; i<names.Count(); i++)
                 {

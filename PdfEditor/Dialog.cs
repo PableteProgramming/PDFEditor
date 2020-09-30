@@ -11,8 +11,8 @@ namespace PdfEditor
 {
     public partial class Dialog : Form
     {
-        public string path;
-        public string name;
+        public string[] path;
+        public string[] name;
         int mov;
         int movX;
         int movY;
@@ -25,15 +25,43 @@ namespace PdfEditor
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.InitialDirectory = ".";
+            dialog.Multiselect = true;
             dialog.Filter = "pdf files (*.pdf)|*.pdf";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                path = dialog.FileName;
-                name = dialog.SafeFileName;
-                textBox1.Text = path;
+                path = dialog.FileNames;
+                name = dialog.SafeFileNames;
+                string s = "";
+                for(int i=0; i < name.Length; i++)
+                {
+                    s += path[i] + "|";
+                }
+                textBox1.Text = s;
             }
         }
-
+        private string[] Separate(string s, string ss)
+        {
+            List<string> sss = new List<string>();
+            string ssss = "";
+            for (int i=0; i < s.Length; i++)
+            {
+                if (s[i].ToString() != ss)
+                {
+                    ssss += s[i];
+                }
+                else
+                {
+                    sss.Add(ssss);
+                    ssss = "";
+                }
+            }
+            string[] r= new string[sss.Count];
+            for(int i=0; i < sss.Count; i++)
+            {
+                r[i] = sss[i];
+            }
+            return r;
+        }
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             if (mov == 1)
@@ -56,14 +84,21 @@ namespace PdfEditor
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            path = textBox1.Text;
-            if (path.Trim() != "")
+            path = Separate(textBox1.Text, "|");
+            string p = textBox1.Text;
+            if (p.Trim() != "")
             {
-                if (!File.Exists(path))
+                bool d = true;
+                for(int i=0; i < path.Length; i++)
                 {
-                    MessageBox.Show("File " + path + " not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!File.Exists(path[i]))
+                    {
+                        MessageBox.Show("File " + path + " not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        d = false;
+                        break;
+                    }
                 }
-                else
+                if(d)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
