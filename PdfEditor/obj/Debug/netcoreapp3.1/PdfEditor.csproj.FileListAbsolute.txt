@@ -1,0 +1,15 @@
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Debug\netcoreapp3.1\PdfEditor.exe
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Debug\netcoreapp3.1\PdfEditor.deps.json
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Debug\netcoreapp3.1\PdfEditor.runtimeconfig.json
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Debug\netcoreapp3.1\PdfEditor.runtimeconfig.dev.json
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Debug\netcoreapp3.1\PdfEditor.dll
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Debug\netcoreapp3.1\PdfEditor.pdb
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.csprojAssemblyReference.cache
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.Form1.resources
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.csproj.GenerateResource.cache
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.AssemblyInfoInputs.cache
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.AssemblyInfo.cs
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.csproj.CoreCompileInputs.cache
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.dll
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.pdb
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.genruntimeconfig.cache
