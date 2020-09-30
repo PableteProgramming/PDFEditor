@@ -13,3 +13,4 @@ C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEd
 C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.dll
 C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.pdb
 C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.genruntimeconfig.cache
+C:\Users\curro.LAPTOP-DUBBS74R\OneDrive\Documentos\Programming\VS\Pablo\C#\PdfEditor\PdfEditor\obj\Debug\netcoreapp3.1\PdfEditor.Dialog.resources
