@@ -33,10 +33,10 @@ namespace PdfEditor
             return false;
         }
 
-        private List<string> MoveUp(List<string> ss, string sss)
+        private List<string> MoveUp(List<string> ss, int index)
         {
             List<string> ssss = ss;
-            int index = ss.IndexOf(sss);
+            string sss = ss[index];
             if (index > 0)
             {
                 for (int i = 0; i < ss.Count; i++)
@@ -52,10 +52,10 @@ namespace PdfEditor
             return ssss;
         }
 
-        private List<string> MoveDown(List<string> ss, string sss)
+        private List<string> MoveDown(List<string> ss, int index)
         {
             List<string> ssss = ss;
-            int index = ss.IndexOf(sss);
+            string sss = ss[index];
             if (index < ss.Count)
             {
                 for (int i = 0; i < ss.Count; i++)
@@ -71,11 +71,10 @@ namespace PdfEditor
             return ssss;
         }
 
-        private void Delete(List<string> s, string ss)
+        private void Delete(List<string> s, int pos)
         {
             List<string> sss = new List<string>();
-            int index = s.IndexOf(ss);
-            s.RemoveAt(index);
+            s.RemoveAt(pos);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,22 +99,21 @@ namespace PdfEditor
             DialogResult result = dialog.ShowDialog();
             try
             {
-                string s = names[listBox1.SelectedIndex];
-                string ss = paths[listBox1.SelectedIndex];
+                int s = listBox1.SelectedIndex;
                 if (result == DialogResult.OK) //Delete
                 {
                     Delete(names, s);
-                    Delete(paths, ss);
+                    Delete(paths, s);
                 }
                 else if (result == DialogResult.Yes) //Move up
                 {
                     names = MoveUp(names, s);
-                    paths = MoveUp(paths, ss);
+                    paths = MoveUp(paths, s);
                 }
                 if (result == DialogResult.No) //Move down
                 {
                     names = MoveDown(names, s);
-                    paths = MoveDown(paths, ss);
+                    paths = MoveDown(paths, s);
                 }
                 listBox1.Items.Clear();
                 for (int i = 0; i < names.Count; i++)
@@ -171,56 +169,49 @@ namespace PdfEditor
                 {
                     outputFilepath += ".pdf";
                 }
-                if (File.Exists(outputFilepath))
+                string r = "";
+                if (paths.Count != 0)
                 {
-                    string r = "";
-                    if (paths.Count != 0)
+                    foreach (string s in paths)
                     {
-                        foreach (string s in paths)
+                        string s1 = s;
+                        if (!EndOfFileIs(s1, ".pdf"))
                         {
-                            string s1 = s;
-                            if (!EndOfFileIs(s1, ".pdf"))
-                            {
                                 
-                                s1 += ".pdf";
-                            }
-                            if (File.Exists(s1))
-                            {
-                                r += s1 + "*";
-                            }
-                            else
-                            {
-                                MessageBox.Show("File " + s1 + " not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            
+                            s1 += ".pdf";
                         }
-                        if (r.Trim() != "")
+                        if (File.Exists(s1))
                         {
-                            r = r.Remove(r.Length - 1);
-
-                            System.Diagnostics.Process process = new System.Diagnostics.Process();
-                            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                            startInfo.FileName = "cmd.exe";
-                            startInfo.CreateNoWindow = true;
-                            startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
-                            process.StartInfo = startInfo;
-                            process.Start();
-                            process.WaitForExit();
-                            MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            r += s1 + "*";
                         }
-                        else {
-                            MessageBox.Show("please select one or more input files !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                        {
+                            MessageBox.Show("File " + s1 + " not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                            
                     }
-                    else
+                    if (r.Trim() != "")
                     {
+                        r = r.Remove(r.Length - 1);
+
+                        System.Diagnostics.Process process = new System.Diagnostics.Process();
+                        System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                        startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                        startInfo.FileName = "cmd.exe";
+                        startInfo.CreateNoWindow = true;
+                        startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
+                        process.StartInfo = startInfo;
+                        process.Start();
+                        process.WaitForExit();
+                        MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else {
                         MessageBox.Show("please select one or more input files !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("File "+outputFilepath+" not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("please select one or more input files !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

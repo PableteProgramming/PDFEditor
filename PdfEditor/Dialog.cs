@@ -190,7 +190,7 @@ namespace PdfEditor
                 {
                     if (!File.Exists(path[i]))
                     {
-                        MessageBox.Show("File " + path + " not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("File " + path[i] + " not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         d = false;
                         break;
                     }
