@@ -20,6 +20,61 @@ namespace PdfEditor
         {
             InitializeComponent();
         }
+        private bool spaceInStringArray(string[] array)
+        {
+            foreach(string s in array)
+            {
+                foreach(char ss in s)
+                {
+                    if(ss==' ')
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        private List<string[]> DeleteElementsWithSpaces(string[] array, string[] array2)
+        {
+            List<string[]> retur = new List<string[]>();
+            List<string> r = new List<string>();
+            List<string> r1 = new List<string>();
+            for(int i=0; i < array.Length; i++)
+            {
+                string s = array[i];
+                string s1 = array2[i];
+                bool d = true;
+                foreach(char ss in s)
+                {
+                    if (ss == ' ')
+                    {
+                        d = false;
+                    }
+                }
+                if (d)
+                {
+                    r.Add(s);
+                    r1.Add(s1);
+                }
+                else
+                {
+                    MessageBox.Show("File " + s + " not added because of spaces in it's path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            string[] ret = new string[r.Count];
+            string[] rett = new string[r1.Count];
+            for(int i=0; i < r.Count; i++)
+            {
+                ret[i] = r[i];
+            }
+            for (int i = 0; i < r1.Count; i++)
+            {
+                rett[i] = r1[i];
+            }
+            retur.Add(ret);
+            retur.Add(rett);
+            return retur;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -29,8 +84,19 @@ namespace PdfEditor
             dialog.Filter = "pdf files (*.pdf)|*.pdf";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                path = dialog.FileNames;
-                name = dialog.SafeFileNames;
+                string[] pathtemp= dialog.FileNames;
+                string[] nametemp = dialog.SafeFileNames;
+                if (spaceInStringArray(pathtemp))
+                {
+                    List<string[]> sss= DeleteElementsWithSpaces(pathtemp,nametemp);
+                    path = sss[0];
+                    name = sss[1];
+                }
+                else
+                {
+                    path = pathtemp;
+                    name = nametemp;
+                }
                 string s = "";
                 for(int i=0; i < name.Length; i++)
                 {
@@ -81,10 +147,41 @@ namespace PdfEditor
             movX = e.X;
             movY = e.Y;
         }
+        private List<string[]> GetFileNames(string[] array)
+        {
+            List<string[]> ret = new List<string[]>();
+            List<string> arr1= new List<string>();
+            List<string> arr = new List<string>();
+            for(int i=0; i < array.Length; i++)
+            {
+                string filename = Path.GetFileName(array[i]);
+                if (filename.Trim() != "")
+                {
+                    arr.Add(array[i]);
+                    arr1.Add(filename);
+                }
+            }
+            string[] r = new string[arr.Count];
+            string[] r1 = new string[arr1.Count];
+            for (int i = 0; i < arr.Count; i++)
+            {
+                r[i] = arr[i];
+            }
+            for (int i = 0; i < arr1.Count; i++)
+            {
+                r1[i] = arr1[i];
+            }
+            ret.Add(r);
+            ret.Add(r1);
+            return ret;
+        }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
             path = Separate(textBox1.Text, "*");
+            List<string[]> s = GetFileNames(path);
+            path = s[0];
+            name = s[1];
             string p = textBox1.Text;
             if (p.Trim() != "")
             {

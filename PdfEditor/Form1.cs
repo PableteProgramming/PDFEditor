@@ -21,6 +21,17 @@ namespace PdfEditor
         {
             InitializeComponent();
         }
+        private bool spaceInString(string array)
+        {
+            foreach (char ss in array)
+            {
+                if (ss == ' ')
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private List<string> MoveUp(List<string> ss, string sss)
         {
@@ -127,8 +138,28 @@ namespace PdfEditor
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                textBox1.Text = dialog.FileName;
+                string s = dialog.FileName;
+                if (spaceInString(s))
+                {
+                    MessageBox.Show("File " + s + " not added because of spaces in it's path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    textBox1.Text = dialog.FileName;
+                }
             }
+        }
+        private bool EndOfFileIs(string s, string e)
+        {
+            int j = 0;
+            for (int i = s.Length - e.Length; i < s.Length; i++,j++)
+            {
+                if (s[i] != e[j])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -136,23 +167,61 @@ namespace PdfEditor
             outputFilepath = textBox1.Text;
             if (outputFilepath.Trim() != "")
             {
-                string r = "";
-                foreach(string s in paths)
+                if (!EndOfFileIs(outputFilepath, ".pdf"))
                 {
-                    r += s+"*";
+                    outputFilepath += ".pdf";
                 }
-                r=r.Remove(r.Length-1);
+                if (File.Exists(outputFilepath))
+                {
+                    string r = "";
+                    if (paths.Count != 0)
+                    {
+                        foreach (string s in paths)
+                        {
+                            string s1 = s;
+                            if (!EndOfFileIs(s1, ".pdf"))
+                            {
+                                
+                                s1 += ".pdf";
+                            }
+                            if (File.Exists(s1))
+                            {
+                                r += s1 + "*";
+                            }
+                            else
+                            {
+                                MessageBox.Show("File " + s1 + " not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            
+                        }
+                        if (r.Trim() != "")
+                        {
+                            r = r.Remove(r.Length - 1);
 
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                startInfo.FileName = "cmd.exe";
-                startInfo.CreateNoWindow = true;
-                startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
-                process.StartInfo = startInfo;
-                process.Start();
-                process.WaitForExit();
-                MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            System.Diagnostics.Process process = new System.Diagnostics.Process();
+                            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                            startInfo.FileName = "cmd.exe";
+                            startInfo.CreateNoWindow = true;
+                            startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
+                            process.StartInfo = startInfo;
+                            process.Start();
+                            process.WaitForExit();
+                            MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else {
+                            MessageBox.Show("please select one or more input files !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("please select one or more input files !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("File "+outputFilepath+" not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
