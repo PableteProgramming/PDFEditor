@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace PdfEditor
 {
@@ -137,17 +139,20 @@ namespace PdfEditor
                 string r = "";
                 foreach(string s in paths)
                 {
-                    r += s+":";
+                    r += s+"*";
                 }
                 r=r.Remove(r.Length-1);
-                //System.Diagnostics.Process process = new System.Diagnostics.Process();
-                //System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                //startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                //startInfo.FileName = "cmd.exe";
-                //startInfo.Arguments = "/C merge "+r+" "+outputFilepath;
-                //process.StartInfo = startInfo;
-                //process.Start();
-                //process.WaitForExit();
+
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.FileName = "cmd.exe";
+                startInfo.CreateNoWindow = true;
+                startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
+                process.StartInfo = startInfo;
+                process.Start();
+                process.WaitForExit();
+                MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

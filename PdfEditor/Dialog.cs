@@ -34,7 +34,7 @@ namespace PdfEditor
                 string s = "";
                 for(int i=0; i < name.Length; i++)
                 {
-                    s += path[i] + "|";
+                    s += path[i] + "*";
                 }
                 textBox1.Text = s;
             }
@@ -84,7 +84,7 @@ namespace PdfEditor
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            path = Separate(textBox1.Text, "|");
+            path = Separate(textBox1.Text, "*");
             string p = textBox1.Text;
             if (p.Trim() != "")
             {
