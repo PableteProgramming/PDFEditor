@@ -20,6 +20,11 @@ namespace PdfEditor
         public Form1()
         {
             InitializeComponent();
+            if (!File.Exists("merge.exe"))
+            {
+                MessageBox.Show("merge.exe is needed and is not found ! Please put it in the same directory as the executable. You can always find it here: https://github.com/PableteProgramming/mergepdfPython","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                Close();
+            }
         }
         private bool spaceInString(string array)
         {
@@ -193,17 +198,23 @@ namespace PdfEditor
                     if (r.Trim() != "")
                     {
                         r = r.Remove(r.Length - 1);
-
-                        System.Diagnostics.Process process = new System.Diagnostics.Process();
-                        System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                        startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                        startInfo.FileName = "cmd.exe";
-                        startInfo.CreateNoWindow = true;
-                        startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
-                        process.StartInfo = startInfo;
-                        process.Start();
-                        process.WaitForExit();
-                        MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (!File.Exists("merge.exe"))
+                        {
+                            MessageBox.Show("merge.exe is needed and is not found ! Please put it in the same directory as the executable. You can always find it here: https://github.com/PableteProgramming/mergepdfPython", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else {
+                            System.Diagnostics.Process process = new System.Diagnostics.Process();
+                            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                            startInfo.FileName = "cmd.exe";
+                            startInfo.CreateNoWindow = true;
+                            startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
+                            process.StartInfo = startInfo;
+                            process.Start();
+                            process.WaitForExit();
+                            MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        
                     }
                     else {
                         MessageBox.Show("please select one or more input files !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
