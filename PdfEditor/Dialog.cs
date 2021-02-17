@@ -20,20 +20,7 @@ namespace PdfEditor
         {
             InitializeComponent();
         }
-        private bool spaceInStringArray(string[] array)
-        {
-            foreach(string s in array)
-            {
-                foreach(char ss in s)
-                {
-                    if(ss==' ')
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+
         private List<string[]> DeleteElementsWithSpaces(string[] array, string[] array2)
         {
             List<string[]> retur = new List<string[]>();
@@ -43,23 +30,8 @@ namespace PdfEditor
             {
                 string s = array[i];
                 string s1 = array2[i];
-                bool d = true;
-                foreach(char ss in s)
-                {
-                    if (ss == ' ')
-                    {
-                        d = false;
-                    }
-                }
-                if (d)
-                {
-                    r.Add(s);
-                    r1.Add(s1);
-                }
-                else
-                {
-                    MessageBox.Show("File " + s + " not added because of spaces in it's path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                r.Add(s);
+                r1.Add(s1);
             }
             string[] ret = new string[r.Count];
             string[] rett = new string[r1.Count];
@@ -86,17 +58,8 @@ namespace PdfEditor
             {
                 string[] pathtemp= dialog.FileNames;
                 string[] nametemp = dialog.SafeFileNames;
-                if (spaceInStringArray(pathtemp))
-                {
-                    List<string[]> sss= DeleteElementsWithSpaces(pathtemp,nametemp);
-                    path = sss[0];
-                    name = sss[1];
-                }
-                else
-                {
-                    path = pathtemp;
-                    name = nametemp;
-                }
+                path = pathtemp;
+                name = nametemp;
                 string s = "";
                 for(int i=0; i < name.Length; i++)
                 {

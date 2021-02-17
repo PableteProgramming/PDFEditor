@@ -25,17 +25,6 @@ namespace PdfEditor
         {
             InitializeComponent();
         }
-        private bool spaceInString(string array)
-        {
-            foreach (char ss in array)
-            {
-                if (ss == ' ')
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
         private List<string> MoveUp(List<string> ss, int index)
         {
@@ -141,14 +130,7 @@ namespace PdfEditor
             if (result == DialogResult.OK)
             {
                 string s = dialog.FileName;
-                if (spaceInString(s))
-                {
-                    MessageBox.Show("File " + s + " not added because of spaces in it's path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    textBox1.Text = dialog.FileName;
-                }
+                textBox1.Text = dialog.FileName;
             }
         }
         private bool EndOfFileIs(string s, string e)
