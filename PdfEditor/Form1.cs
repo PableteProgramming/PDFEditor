@@ -9,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using iTextSharp;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System.Text.RegularExpressions;
 
 namespace PdfEditor
 {
@@ -167,6 +171,8 @@ namespace PdfEditor
 
         private void button2_Click(object sender, EventArgs e)
         {
+            List<string> pdfs= new List<string>();
+            pdfs.Clear();
             outputFilepath = textBox1.Text;
             if (outputFilepath.Trim() != "")
             {
@@ -185,24 +191,30 @@ namespace PdfEditor
                                 
                             s1 += ".pdf";
                         }
-                        if (File.Exists(s1))
+                        if (!File.Exists(s1))
                         {
-                            r += s1 + "*";
+                            //r += s1 + "*";
+                            MessageBox.Show("File " + s1 + " not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
-                            MessageBox.Show("File " + s1 + " not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            pdfs.Add(s1);
+                            //MessageBox.Show("File " + s1 + " not found !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                             
                     }
-                    if (r.Trim() != "")
+                    if (pdfs.Count!=0)
                     {
-                        r = r.Remove(r.Length - 1);
+
+                        MergePdf(pdfs, outputFilepath);
+
+                        /*r = r.Remove(r.Length - 1);
                         if (!File.Exists("merge.exe"))
                         {
                             MessageBox.Show("merge.exe is needed and is not found ! Please put it in the same directory as the executable. You can always find it here: https://github.com/PableteProgramming/mergepdfPython", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else {
+                            MessageBox.Show("r=" + r,"Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
                             System.Diagnostics.Process process = new System.Diagnostics.Process();
                             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
                             startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
@@ -211,9 +223,9 @@ namespace PdfEditor
                             startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
                             process.StartInfo = startInfo;
                             process.Start();
-                            process.WaitForExit();
-                            MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                            process.WaitForExit();*/
+                        MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //}
                         
                     }
                     else {
@@ -228,6 +240,51 @@ namespace PdfEditor
             else
             {
                 MessageBox.Show("Please fill the output file name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MergePdf(List<string> pdfs,string output)
+        {
+            PdfReader reader = null;
+            Document sourceDocument=null;
+            PdfCopy pdfCopyProvider = null;
+            PdfImportedPage importedPage;
+
+            sourceDocument = new Document();
+            pdfCopyProvider = new PdfCopy(sourceDocument, new System.IO.FileStream(output, System.IO.FileMode.Create));
+
+            //output file Open  
+            sourceDocument.Open();
+
+
+            //files list wise Loop  
+            for (int f = 0; f < pdfs.Count; f++)
+            {
+                int pages = TotalPageCount(pdfs[f]);
+
+                reader = new PdfReader(pdfs[f]);
+                //Add pages in new file  
+                for (int i = 1; i <= pages; i++)
+                {
+                    importedPage = pdfCopyProvider.GetImportedPage(reader, i);
+                    pdfCopyProvider.AddPage(importedPage);
+                }
+
+                reader.Close();
+            }
+            //save the output file  
+            sourceDocument.Close();
+
+        }
+
+        private static int TotalPageCount(string file)
+        {
+            using (StreamReader sr = new StreamReader(System.IO.File.OpenRead(file)))
+            {
+                Regex regex = new Regex(@"/Type\s*/Page[^s]");
+                MatchCollection matches = regex.Matches(sr.ReadToEnd());
+
+                return matches.Count;
             }
         }
     }

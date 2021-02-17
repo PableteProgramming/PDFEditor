@@ -1,8 +1,32 @@
 {
   "version": 2,
-  "dgSpecHash": "tBs5I1KsuIsTq11DA+vKLpNsCVCw2xL4cd4jrnDbBbC5UEomlWa9zRJ/5ZtD/dZf0hbNrGNjnOduCBUhFdUoXA==",
+  "dgSpecHash": "tyTtM/hKe/XJj0G305vx4nVUqKBAVuaSSWv9NwGEqgXC5F3AO/bGzxD5ukobLdRH0OliiAu2s51XU+dUTufllw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\curro.LAPTOP-DUBBS74R\\OneDrive\\Documentos\\Programming\\VS\\Pablo\\C#\\PdfEditor\\PdfEditor\\PdfEditor.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "D:\\Programming\\Windows\\VS\\Pablo\\C#\\PdfEditor\\PdfEditor\\PdfEditor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\bouncycastle\\1.8.6.1\\bouncycastle.1.8.6.1.nupkg.sha512",
+    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\itextsharp\\5.5.13.2\\itextsharp.5.5.13.2.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"BouncyCastle 1.8.6.1\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETCoreApp,Version=v3.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"iTextSharp 5.5.13.2\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETCoreApp,Version=v3.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "iTextSharp",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }
