@@ -1,0 +1,2 @@
+D:\Programming\Windows\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Release\netcoreapp3.1\win10-x64\publish\PdfEditor.pdb
+D:\Programming\Windows\VS\Pablo\C#\PdfEditor\PdfEditor\bin\Release\netcoreapp3.1\win10-x64\publish\PdfEditor.exe

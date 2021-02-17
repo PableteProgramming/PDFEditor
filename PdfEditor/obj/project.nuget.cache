@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "tyTtM/hKe/XJj0G305vx4nVUqKBAVuaSSWv9NwGEqgXC5F3AO/bGzxD5ukobLdRH0OliiAu2s51XU+dUTufllw==",
+  "dgSpecHash": "iW9wDvaGVLezssE4xuOGz4VwDJEj4fC4eS/WDYUHWxjyqTAYI7QB4oQUx2hoIpDqaURCiyWacryCs5/axSChPQ==",
   "success": true,
   "projectFilePath": "D:\\Programming\\Windows\\VS\\Pablo\\C#\\PdfEditor\\PdfEditor\\PdfEditor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\bouncycastle\\1.8.6.1\\bouncycastle.1.8.6.1.nupkg.sha512",
-    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\itextsharp\\5.5.13.2\\itextsharp.5.5.13.2.nupkg.sha512"
+    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\itextsharp\\5.5.13.2\\itextsharp.5.5.13.2.nupkg.sha512",
+    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\3.1.11\\microsoft.netcore.app.runtime.win-x64.3.1.11.nupkg.sha512",
+    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\3.1.11\\microsoft.windowsdesktop.app.runtime.win-x64.3.1.11.nupkg.sha512",
+    "C:\\Users\\curro.LAPTOP-DUBBS74R\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\3.1.11\\microsoft.aspnetcore.app.runtime.win-x64.3.1.11.nupkg.sha512"
   ],
   "logs": [
     {

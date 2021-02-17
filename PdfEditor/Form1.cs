@@ -24,11 +24,6 @@ namespace PdfEditor
         public Form1()
         {
             InitializeComponent();
-            if (!File.Exists("merge.exe"))
-            {
-                MessageBox.Show("merge.exe is needed and is not found ! Please put it in the same directory as the executable. You can always find it here: https://github.com/PableteProgramming/mergepdfPython","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                Close();
-            }
         }
         private bool spaceInString(string array)
         {
@@ -208,24 +203,7 @@ namespace PdfEditor
 
                         MergePdf(pdfs, outputFilepath);
 
-                        /*r = r.Remove(r.Length - 1);
-                        if (!File.Exists("merge.exe"))
-                        {
-                            MessageBox.Show("merge.exe is needed and is not found ! Please put it in the same directory as the executable. You can always find it here: https://github.com/PableteProgramming/mergepdfPython", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else {
-                            MessageBox.Show("r=" + r,"Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                            System.Diagnostics.Process process = new System.Diagnostics.Process();
-                            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-                            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-                            startInfo.FileName = "cmd.exe";
-                            startInfo.CreateNoWindow = true;
-                            startInfo.Arguments = "/C merge.exe " + r + " " + outputFilepath;
-                            process.StartInfo = startInfo;
-                            process.Start();
-                            process.WaitForExit();*/
                         MessageBox.Show("Pdfs merged !", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //}
                         
                     }
                     else {
